@@ -1,0 +1,330 @@
+<div class="card">
+  <div class="card-header h5">
+    <div class="row align-items-center gutters-5">
+      <div class="col-auto">
+        <div class="special-badge text-uppercase">{{title[0]}}</div>
+      </div>
+      <div class="col">
+         {{title}}
+      </div>
+      <div class="col-auto"><a class="btn btn-icon btn-outline-grey" href="#" (click)="common.goBack($event)"><i
+            class="la la-arrow-left"></i></a></div>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group">
+            <div class="input" [ngClass]="{invalid:form.get('companyName')?.hasError('required') && submitted}">
+              <span>Company Name</span>
+                <input type="text" [typeahead]="companies" typeaheadOptionField="companyName"
+                (typeaheadOnSelect)="onSelect($event)" class="form-control form-control-lg" formControlName="companyName"
+                 />
+            </div>
+            
+            <small class="err" *ngIf="form.get('companyName')?.hasError('required') && submitted">Required</small>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <div class="input" [ngClass]="{invalid:form.get('state')?.hasError('required') && submitted}">
+              <span>State</span>
+              <input type="text" class="form-control form-control-lg" formControlName="state"  />
+            </div>
+           
+            <small class="err" *ngIf="form.get('state')?.hasError('required') && submitted">Required</small>
+          </div>
+        </div>
+        <div class="col-12">
+          <h5>Number of Owned Shares</h5>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <div class="input" [ngClass]="{invalid:form.get('ownedShares')?.hasError('required') && submitted || form.get('ownedShares')?.hasError('pattern')}">
+              <span>Owned Shares</span>
+              <input type="text" class="form-control form-control-lg" formControlName="ownedShares"
+               />
+            </div>
+
+           
+           
+            <small class="err" *ngIf="form.get('ownedShares')?.hasError('required') && submitted">Required</small>
+            <small class="err" *ngIf="form.get('ownedShares')?.hasError('pattern')">Enter only Numbers</small>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+              <div class="input" [ngClass]="{invalid:form.get('pricePaid')?.hasError('required') && submitted || form.get('pricePaid')?.hasError('pattern')}">
+                  <span>Price Paid</span>
+                  <input type="text" class="form-control form-control-lg" formControlName="pricePaid"
+                   />
+                </div>
+        
+            <small class="err" *ngIf="form.get('pricePaid')?.hasError('required') && submitted">Required</small>
+            <small class="err" *ngIf="form.get('pricePaid')?.hasError('pattern')">Enter only Numbers</small>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+              <div class="input"  [ngClass]="{invalid:form.get('valuation409AWhenExercised')?.hasError('required') && submitted || form.get('valuation409AWhenExercised')?.hasError('pattern')}">
+                  <span>Valuation 409A When Exercised</span>
+                  <input type="text" class="form-control form-control-lg" formControlName="valuation409AWhenExercised"
+                  />
+                </div>
+    
+            <small class="err"
+              *ngIf="form.get('valuation409AWhenExercised')?.hasError('required') && submitted">Required</small>
+            <small class="err" *ngIf="form.get('valuation409AWhenExercised')?.hasError('pattern')">Enter only
+              Numbers</small>
+          </div>
+        </div>
+        <div class="col-12">
+          <h5>Number of ISO's</h5>
+        </div>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                  <div class="input"  [ngClass]="{invalid:form.get('numberOfISO')?.hasError('required') && submitted || form.get('numberOfISO')?.hasError('pattern')}">
+                      <span>Number Of ISO</span>
+                      <input type="text" class="form-control form-control-lg" formControlName="numberOfISO"
+                      />
+                    </div>
+
+              
+                <small class="err" *ngIf="form.get('numberOfISO')?.hasError('required') && submitted">Required</small>
+                <small class="err" *ngIf="form.get('numberOfISO')?.hasError('pattern')">Enter only Numbers</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="inputRef">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-auto">
+                          <app-toggle [formControl]="iso"></app-toggle>
+                        </div>
+                        <div class="col pl-2">
+                          Do you have multiple grants of ISO’s ?
+                        </div>
+                      </div>
+                </div>
+                
+             
+              </div>
+            </div>
+          </div>
+          <div formArrayName="ISO" *ngIf="iso?.value">
+            <div *ngFor="let item of form.get('ISO')?.controls; let i = index">
+              <div class="row" [formGroupName]="i">
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <div class="input" [ngClass]="{invalid:form.get('ISO')?.controls[i]?.get('grantDate')?.hasError('required') && submitted}">
+                          <span>Grant Date</span>
+                          <input type="text" bsDatepicker [bsConfig]="common.datePicker.config" class="form-control form-control-lg" formControlName="grantDate"
+                           />
+                        </div>
+                   
+                   
+                    <small class="err"
+                      *ngIf="form.get('ISO')?.controls[i]?.get('grantDate')?.hasError('required') && submitted">Required</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <div class="input" [ngClass]="{invalid:form.get('ISO')?.controls[i]?.get('strikePrice')?.hasError('required') && submitted || form.get('ISO')?.controls[i]?.get('strikePrice')?.hasError('pattern')}">
+                          <span>Strike Price</span>
+                          <input type="text" class="form-control form-control-lg" formControlName="strikePrice"
+                           />
+                        </div>
+                 
+                   
+                    <small class="err"
+                      *ngIf="form.get('ISO')?.controls[i]?.get('strikePrice')?.hasError('required') && submitted">Required</small>
+                    <small class="err"
+                      *ngIf="form.get('ISO')?.controls[i]?.get('strikePrice')?.hasError('pattern')">Enter only
+                      Numbers</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <div class="input" [ngClass]="{invalid:form.get('ISO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('required') && submitted || form.get('ISO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('pattern')}">
+                          <span>No Of Strikes Granted</span>
+                          <input type="text" class="form-control form-control-lg" formControlName="noOfStrikesGranted"
+                           />
+                        </div>
+                  
+                    <small class="err"
+                      *ngIf="form.get('ISO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('required') && submitted">Required</small>
+                    <small class="err"
+                      *ngIf="form.get('ISO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('pattern')">Enter only
+                      Numbers</small>
+                  </div>
+                </div>
+                <div class="col-md-3" *ngIf="i !=0">
+                  <div class="form-group">
+                    
+                    <div class="input-lg-placeholder d-flex align-items-center"><button class="btn btn-sm btn-danger"
+                        (click)="remove(i,'iso')">Remove</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary mb-4" (click)="addmore('iso')" [disabled]="!form.get('ISO').valid">Add
+              More</button>
+          </div>
+        </div>
+        <div class="col-12">
+          <h5>Number of NSO's</h5>
+        </div>
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                  <div class="input"  [ngClass]="{invalid:form.get('numberOfNSO')?.hasError('required') && submitted || form.get('numberOfNSO')?.hasError('pattern')}">
+                      <span>Number Of NSO's</span>
+                      <input type="text" class="form-control form-control-lg" formControlName="numberOfNSO"
+                      />
+                    </div>
+                
+              
+                <small class="err" *ngIf="form.get('numberOfNSO')?.hasError('required') && submitted">Required</small>
+                <small class="err" *ngIf="form.get('numberOfNSO')?.hasError('pattern')">Enter only Numbers</small>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <div class="inputRef">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-auto">
+                          <app-toggle [formControl]="nso"></app-toggle>
+                        </div>
+                        <div class="col pl-2">
+                          Do you have multiple grants of NSO’s ?
+                        </div>
+                      </div>
+                </div>
+                
+            
+              </div>
+            </div>
+          </div>
+          <div formArrayName="NSO" *ngIf="nso?.value">
+            <div *ngFor="let item of form.get('NSO')?.controls; let i = index">
+              <div class="row" [formGroupName]="i">
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <div class="input"  [ngClass]="{invalid:form.get('NSO')?.controls[i]?.get('grantDate')?.hasError('required') && submitted}">
+                          <span>Grant Date</span>
+                          <input type="text" bsDatepicker [bsConfig]="common.datePicker.config" class="form-control form-control-lg" formControlName="grantDate"
+                          />
+                        </div>
+                   
+                    <small class="err"
+                      *ngIf="form.get('NSO')?.controls[i]?.get('grantDate')?.hasError('required') && submitted">Required</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <div class="input" [ngClass]="{invalid:form.get('NSO')?.controls[i]?.get('strikePrice')?.hasError('required') && submitted || form.get('NSO')?.controls[i]?.get('strikePrice')?.hasError('pattern')}" >
+                          <span>Strike Price</span>
+                          <input type="text" class="form-control form-control-lg" formControlName="strikePrice"
+                          />
+                        </div>
+                  
+                    <small class="err"
+                      *ngIf="form.get('NSO')?.controls[i]?.get('strikePrice')?.hasError('required') && submitted">Required</small>
+                    <small class="err"
+                      *ngIf="form.get('NSO')?.controls[i]?.get('strikePrice')?.hasError('pattern')">Enter only
+                      Numbers</small>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                      <div class="input" [ngClass]="{invalid:form.get('NSO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('required') && submitted || form.get('NSO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('pattern')}" >
+                          <span>No Of Strikes Granted</span>
+                          <input type="text" class="form-control form-control-lg" formControlName="noOfStrikesGranted"
+                          />
+                        </div>
+                 
+                    <small class="err"
+                      *ngIf="form.get('NSO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('required') && submitted">Required</small>
+                    <small class="err"
+                      *ngIf="form.get('NSO')?.controls[i]?.get('noOfStrikesGranted')?.hasError('pattern')">Enter only
+                      Numbers</small>
+                  </div>
+                </div>
+                <div class="col-md-3" *ngIf="i !=0">
+                  <div class="form-group">
+                    
+                    <div class="input-lg-placeholder d-flex align-items-center"><button class="btn btn-sm btn-danger"
+                        (click)="remove(i,'nso')">Remove</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary mb-4" (click)="addmore('nso')" [disabled]="!form.get('NSO').valid">Add
+              More</button>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+              <div class="input" [ngClass]="{invalid:form.get('current409AValuation')?.hasError('required') && submitted || form.get('current409AValuation')?.hasError('pattern')}">
+                  <span>Current 409A Valuation</span>
+                  <input type="text" class="form-control form-control-lg" formControlName="current409AValuation"
+                   />
+                </div>
+           
+           
+            <small class="err"
+              *ngIf="form.get('current409AValuation')?.hasError('required') && submitted">Required</small>
+            <small class="err" *ngIf="form.get('current409AValuation')?.hasError('pattern')">Enter only Numbers</small>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+              <div class="input"  [ngClass]="{invalid:form.get('lastRoundValuation')?.hasError('required') && submitted || form.get('lastRoundValuation')?.hasError('pattern')}">
+                  <span>Last Round Valuation</span>
+                  <input type="text" class="form-control form-control-lg" formControlName="lastRoundValuation"
+                  />
+                </div>
+           
+           
+            <small class="err"
+              *ngIf="form.get('lastRoundValuation')?.hasError('required') && submitted">Required</small>
+            <small class="err" *ngIf="form.get('lastRoundValuation')?.hasError('pattern')">Enter only Numbers</small>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+              <div class="input" [ngClass]="{invalid:form.get('fullyDilutedShareCount')?.hasError('required') && submitted || form.get('fullyDilutedShareCount')?.hasError('pattern')}" >
+                  <span>Fully Diluted Share Count</span>
+                  <input type="text" class="form-control form-control-lg" formControlName="fullyDilutedShareCount" />
+                </div>
+           
+           
+            <small class="err" *ngIf="form.get('fullyDilutedShareCount')?.hasError('required') && submitted">Required</small>
+            <small class="err" *ngIf="form.get('fullyDilutedShareCount')?.hasError('pattern')">Enter only  Numbers</small>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+              <div class="input" [ngClass]="{invalid:form.get('additionalLiquidity')?.hasError('required')  && submitted || form.get('additionalLiquidity')?.hasError('pattern')}">
+                  <span>Additional Liquidity</span>
+                  <input type="text" class="form-control form-control-lg" formControlName="additionalLiquidity" />
+                </div>
+            
+            <small class="err"
+              *ngIf="form.get('additionalLiquidity')?.hasError('required') && submitted">Required</small>
+            <small class="err" *ngIf="form.get('additionalLiquidity')?.hasError('pattern')">Enter only Numbers</small>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- <div [innerHTML]="form.value | prettyprint"></div> -->
+  </div>
+  <div class="card-footer text-right">
+     
+    <button class="btn btn-lg btn-primary" (click)="submit()">See your Liquid Solution Now</button>
+  </div>
+</div>

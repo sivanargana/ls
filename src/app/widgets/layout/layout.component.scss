@@ -1,0 +1,78 @@
+@import "src/scss/variables";
+.admin {
+    position: relative;
+    background-color: $bg-grey;
+    min-height: 100vh;
+    padding-left: map-get($layout, sidebarWidth);
+    padding-top: map-get($layout, headerHeight);
+    &-header {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: map-get($layout, headerHeight);
+        background-color: white;
+        z-index: 9;
+        box-shadow: $shadow;
+        // flex
+        display: flex;
+        align-items: center;
+        justify-content: stretch;
+        >div{
+            width: 100%;
+        }
+    }
+    &-sidebar {
+        position: fixed;
+        left: 0px;
+        top: map-get($layout, headerHeight);
+        height: calc(100% - #{map-get($layout, headerHeight)});
+        width: map-get($layout, sidebarWidth);
+        background-color: white;
+        z-index: 6;
+        box-shadow: $shadow;
+        &::before{
+            content: '';
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 40px;
+            background:linear-gradient(to bottom, rgba(black,.07) 0%,transparent 50%);
+            pointer-events: none;
+            z-index: 5;
+        }
+        >div{
+            height: 100%;
+            overflow-y: auto;
+        }
+    }
+    &-body {
+        padding: 20px;
+        min-height: calc(
+            100vh - #{(map-get($layout, headerPadding) * 2) + map-get($layout, logoHeight) + map-get(
+                    $layout,
+                    footerHeight
+                )}
+        );
+    }
+    &-footer {
+        background-color: $bg-dark;
+        height: map-get($layout, footerHeight);
+        // flex
+        display: flex;
+        align-items: center;
+        justify-content: stretch;
+        >div{
+            width: 100%;
+        }
+    }
+}
+@media (max-width: $break-point-mobile) {
+    .admin {
+        padding-left: 0px;
+        &-body {
+            padding: 15px;
+        }
+    }
+}

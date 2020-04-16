@@ -1,0 +1,100 @@
+<fullscreen>
+    <div lft class="bg flex-grow-1"></div>
+    <div rht>
+      <div class="p-5">
+        <div class="text-center">
+          <img class="mb-4" src="assets/images/liquid-logo-black.png" height="60" alt="liquid-stock-logo">
+          <h3 class="mb-4 head-line"><span>Sign Up</span></h3>
+        </div>
+        <form [formGroup]="form" class="sign-up-form">
+          <div class="row gutters-4">
+            <div class="col-md-6">
+              <div class="form-group">
+               <div class="input" [ngClass]="{invalid:form?.controls?.firstName?.errors?.required && submitted}">
+                 <span>First Name</span>
+                  <input class="form-control form-control-lg" type="text" formControlName="firstName"
+                  placeholder11="First Name"  />
+               </div>
+                <small class="err" *ngIf="form?.controls?.firstName?.errors?.required && submitted">Required</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input" [ngClass]="{invalid:form?.controls?.lastName?.errors?.required && submitted}">
+                  <span>Last Name</span>
+                  <input class="form-control form-control-lg" type="text" formControlName="lastName"
+                  placeholder11="Last Name"   />
+                </div>
+                <small class="err" *ngIf="form?.controls?.lastName?.errors?.required && submitted">Required</small>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+               <div class="input" [ngClass]="{invalid:form.controls?.companyName?.errors?.required && submitted}" >
+                 <span>Company Name</span>
+                 <input class="form-control form-control-lg" type="text" formControlName="companyName"
+                 placeholder11="Company Name"  />
+               </div>
+                <small class="err" *ngIf="form.controls?.companyName?.errors?.required && submitted">Required</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+               <div class="input" [ngClass]="{invalid:form?.controls?.email?.errors?.required && submitted || form?.controls?.email?.errors?.email}">
+                 <span>Email</span>
+                 <input class="form-control form-control-lg" type="email" formControlName="email" placeholder11="Email"   />
+               </div>
+                <small class="err" *ngIf="form?.controls?.email?.errors?.required && submitted">Required</small>
+                <small class="err" *ngIf="form?.controls?.email?.errors?.email">Invalid Email</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input" [ngClass]="{invalid:form?.controls?.mobileNumber?.errors?.required && submitted || form?.controls?.mobileNumber?.errors?.minlength || form?.controls?.mobileNumber?.errors?.pattern}">
+                  <span>Mobile Number</span>
+                  <input class="form-control form-control-lg" type="text" formControlName="mobileNumber"
+                  placeholder11="Mobile Number"  />
+                </div>
+                <small class="err" *ngIf="form?.controls?.mobileNumber?.errors?.required && submitted">Required</small>
+                <small class="err"
+                  *ngIf="form?.controls?.mobileNumber?.errors?.minlength || form?.controls?.mobileNumber?.errors?.pattern">Invalid
+                  Mobile Number</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="input" [ngClass]="{invalid:form.controls?.password?.errors?.required && submitted}">
+                  <span>Password</span>
+                  <input class="form-control form-control-lg" type="text" formControlName="password"
+                  placeholder11="Password" />
+                </div>
+                <small class="err" *ngIf="form.controls?.password?.errors?.required && submitted">Required</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+               <div class="input" [ngClass]="{invalid:form.controls?.confirmPassword?.errors?.required && submitted || form?.errors?.mismatch && form?.controls?.confirmPassword?.dirty && !form?.controls?.confirmPassword?.errors?.requireds}">
+                 <span>Confirm Password</span>
+                 <input class="form-control form-control-lg" type="text" formControlName="confirmPassword"
+                 placeholder11="Confirm Password"   />
+               </div>
+                <small class="err" *ngIf="form.controls?.confirmPassword?.errors?.required && submitted">Required</small>
+                <small class="err"
+                  *ngIf="form?.errors?.mismatch && form?.controls?.confirmPassword?.dirty && !form?.controls?.confirmPassword?.errors?.required">Password
+                  Not Matched</small>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-lg btn-primary mb-4" type="button" (click)="signup()">Sign Up</button>
+            <div class="mb-4">
+              Already a Member ? <a [routerLink]="['./../sign-in']" class="text-primary"><strong>Sign In</strong></a>
+            </div>
+            <div class="text-black-50 note small">
+              *All of the information you provide will be stored <br />in secure decentralized servers on the blockchain.
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </fullscreen>

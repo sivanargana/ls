@@ -1,0 +1,8 @@
+<layout>
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <app-footer></app-footer>
+    <div [@show]="o.isActivated ? o.activatedRoute : 'hello'">
+        <router-outlet #o="outlet"></router-outlet>
+    </div>
+</layout>

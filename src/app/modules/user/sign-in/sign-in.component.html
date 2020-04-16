@@ -1,0 +1,34 @@
+<fullscreen>
+    <div lft class="bg flex-grow-1"></div>
+    <div rht>
+      <div class="p-5">
+          <div class="text-center">
+              <img class="mb-4" src="assets/images/liquid-logo-black.png" height="60" alt="liquid-stock-logo">
+            <h3 class="mb-4 head-line"><span>Sign In</span></h3>
+          </div>
+            <form [formGroup]="form" class="sign-in-form">
+              <div class="form-group">
+                  <div class="input" [ngClass]="{invalid:form.get('email').hasError('required') && submitted || form.get('email').hasError('email')}">
+                    <span>Email</span>
+                    <input class="form-control form-control-lg" type="text" formControlName="email" placeholder11="User Name" />
+                  </div>
+                  <small class="err" *ngIf="form.get('email').hasError('required') && submitted">Required</small>
+                  <small class="err" *ngIf="form.get('email').hasError('email')">Invalid Email</small>
+              </div>
+              <div class="form-group">
+                  <div class="input" [ngClass]="{invalid:form.get('password').hasError('required') && submitted}">
+                    <span>Password</span>
+                      <input class="form-control form-control-lg" type="password" formControlName="password" placeholder11="Password"/>
+                  </div>
+                  <small class="err" *ngIf="form.get('password').hasError('required') && submitted">Required</small>
+              </div>
+              <div class=" text-center">
+                <button class="btn btn-lg btn-primary mb-4" type="button" (click)="signin()">Sign In</button>
+                <div>
+                    Not a Member ?  <a [routerLink]="['./../sign-up']" class="text-primary"><strong>Sign Up</strong></a>
+                </div>
+              </div>
+          </form>
+      </div>
+    </div>
+</fullscreen>

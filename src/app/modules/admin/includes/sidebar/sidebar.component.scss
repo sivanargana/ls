@@ -1,0 +1,24 @@
+@import 'src/scss/variables';
+@import 'src/scss/extends';
+.sidebar{
+   padding: 20px;
+   .nav{
+       .nav-item{
+           .nav-link{
+               color: $font-color;
+               &:hover{
+                   color: $theme;
+               }
+               &.active{
+                color: $theme;
+               }
+           }
+       }
+   }
+    
+}
+@media (max-width:$break-point-mobile){
+    .sidebar{
+       display: none;
+    }
+}

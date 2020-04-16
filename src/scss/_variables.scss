@@ -1,0 +1,21 @@
+$theme:#00B7F4;
+$bg-dark:#282D3C;
+$bg-grey:#ECF0F3;
+$grey:lighten($bg-grey,2%);
+$font-color:#707070;
+$border-color:#e1e3e6;
+$err-msg:#EA2027;
+$font-normal:'D-DIN Condensed Regular';
+$font-bold:'D-DIN Condensed DINCondensed-Bold';
+$font-exp:'D-DIN Exp Regular';
+$break-point-mobile:768px;
+$shadow: 0px 1px 2px rgba(black,.1),0px 0px 1px rgba(black,.1);
+$shadow2: 0px 6px 12px rgba(black,.1);
+$layout:(
+    headerHeight:60px,
+    headerPadding:10px,
+    logoHeight:40px,
+    sidebarWidth:180px,
+    footerHeight:50px
+)
+

@@ -1,0 +1,58 @@
+@import "./variables";
+@function rem($size) {
+    @return $size / 16px * 1rem;
+  }
+
+
+// button large
+$btn-padding-x-lg:rem( 40px);
+$btn-padding-y-lg:rem( 14px);
+$btn-border-radius-lg:rem( 25px);
+$btn-font-size-lg:rem( 15px);
+$btn-line-height-lg:rem( 20px);
+  
+// button normal
+$btn-padding-x:rem( 30px);
+$btn-padding-y:rem( 8px);
+$btn-border-radius:rem( 19px);
+$btn-font-size:rem( 14px);
+$btn-line-height:rem( 20px);
+
+// button small
+$btn-padding-x-sm:rem( 20px);
+$btn-padding-y-sm:rem( 7px);
+$btn-border-radius-sm:rem( 15px);
+$btn-font-size-sm:rem( 12px);
+$btn-line-height-sm:rem( 16px);
+
+// input normal
+$input-font-size:rem( 12px);
+$input-padding-y:rem( 9px);
+
+// input large
+$input-font-size-lg:rem( 14px);
+$input-padding-y-lg:rem( 13.5px);
+
+// common
+$label-margin-bottom: 0.2rem;
+$custom-control-gutter: 0.3rem;
+$card-border-radius:rem( 0px);
+$card-border-color:$border-color;
+$card-cap-bg: white;
+$enable-shadows:true;
+$box-shadow-sm:$shadow2;
+$primary: $theme;
+$dark: $bg-dark;
+$theme-colors: (
+  light: #FDFDFD
+);
+$theme-green: $theme;
+
+@import "~bootstrap/scss/bootstrap";
+@import url('https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.1.0/css/line-awesome.min.css');
+@import url('../assets/fonts/d-din/d-din.css');
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+
+@import "./global";

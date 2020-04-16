@@ -1,0 +1,15 @@
+<section class="sidebar">
+    <a href="#" class="h5" routerLink="/admin">Liquidity Solutions</a>
+  
+    <div  *ngIf="companies.length != 0">
+     <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let item of companies | slice:0:5">
+        <a href="" [routerLink]="['company',item.companyName]" class="nav-link text-capitalize">{{item.companyName}}</a>
+      </li>
+     </ul>
+      <a href="#" routerLink="financial-information" class="btn btn-primary mt-2">Add </a>
+    </div>
+  
+    <a *ngIf="companies.length == 0" href="#" routerLink="financial-information" class="btn btn-primary mt-2">Get Started</a>
+  </section>
+  

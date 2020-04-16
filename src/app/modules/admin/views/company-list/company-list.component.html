@@ -1,0 +1,26 @@
+
+<div class="card">
+        <div class="card-header h5">Liquid Solutions</div>
+        <ngx-datatable class="bootstrap"
+        [rows]="companies"
+        [columns]="columns"
+        [columnMode]="'force'"
+        headerHeight="50"
+        footerHeight="50"
+        [rowHeight]="'auto'"
+        [limit]="8">
+        </ngx-datatable>
+        <ng-template #actions let-row="row" let-value="value">
+          <div>
+                <a href="#" [routerLink]="['./company/',row.companyName]" class="btn-explore">Explore <i class="la la-arrow-right"></i></a>
+           <button (click)="confirm(row.companyName)" class="btn btn-sm btn-outline-grey btn-icon ml-2"><i class="la la-close"></i></button>
+          </div>
+        </ng-template>
+        <ng-template #badge let-row="row" let-value="value">
+                <div class="row align-items-center no-gutters">
+                        <div class="col-auto pr-3"><div class="special-badge text-uppercase">{{row.companyName[0]}}</div></div>
+                        <div class="col text-capitalize">{{row.companyName}}</div>
+                </div>
+        </ng-template>
+      
+    </div>
